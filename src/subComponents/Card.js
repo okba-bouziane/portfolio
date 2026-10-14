@@ -1,49 +1,136 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { Github, Gitlab } from "../components/AllSvgs";
 
-const Box = styled(NavLink)`
-  width: calc(10rem + 15vw);
-  text-decoration: none;
-  height: 20rem;
-  padding: 1rem;
+const Box = styled(motion.article)`
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
   color: ${(props) => props.theme.text};
-  border: 2px solid ${(props) => props.theme.text};
-  backdrop-filter: blur(2px);
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-`;
-const Image = styled.img`
-  background-image: ${(props) => `url(${props.img})`};
-  width: 100%;
-  height: 60%;
-  background-size: cover;
-  border: 1px solid transparent;
-  background-position: center center;
+  background-color: ${(props) => `rgba(${props.theme.bodyRgba},0.6)`};
+  border: 1px solid ${(props) => props.theme.text};
+  border-radius: 0 50px 0 50px;
+  backdrop-filter: blur(3px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: ${(props) => props.theme.body};
+    background-color: ${(props) => props.theme.text};
+  }
+
+  @media (max-width: 50em) {
+    padding: 1.4rem;
+    border-radius: 0 30px 0 30px;
+  }
 `;
 
-const Title = styled.h3`
-  color: ${(props) => props.theme.text};
-  padding: 0.5rem 0;
+const Title = styled.h2`
+  font-family: "Karla", sans-serif;
+  font-size: calc(1.3rem + 0.6vw);
+  font-weight: 600;
+`;
+
+const Tagline = styled.span`
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.95rem;
+  opacity: 0.75;
+  margin-top: 0.3rem;
+`;
+
+const Description = styled.p`
+  font-family: "Karla", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 1.2rem 0 1rem;
+`;
+
+const Highlights = styled.ul`
+  font-family: "Karla", sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  padding-left: 1.2rem;
+  margin-bottom: 1.4rem;
+  opacity: 0.9;
+
+  li + li {
+    margin-top: 0.3rem;
+  }
+`;
+
+const Tags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
   padding-top: 1rem;
-  font-family: "Ubutntu Mono", monospace;
-  font-weight: 450;
-  border-bottom: 1px solid ${(props) => props.theme.text};
+  border-top: 1px solid currentColor;
 `;
 
-const GithubButton = styled.button``;
+const Tag = styled.span`
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.85rem;
+`;
 
-const LiveButton = styled.button``;
+const Links = styled.div`
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+`;
 
-function Card(props) {
-  const { name, tags, date, imgSrc, link } = props.blog;
+const Repo = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid currentColor;
+  border-radius: 20px;
+  color: inherit;
+  text-decoration: none;
+  font-family: "Karla", sans-serif;
+  font-size: 0.9rem;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const item = {
+  hidden: { scale: 0.9, opacity: 0 },
+  show: { scale: 1, opacity: 1, transition: { type: "spring", duration: 0.6 } },
+};
+
+function Card({ project }) {
+  const { name, tagline, description, highlights, tags, github, gitlab } = project;
+
   return (
-    <Box target="_blank" to={{ pathname: link }}>
-      <Image img={imgSrc} />
+    <Box variants={item}>
       <Title>{name}</Title>
-      <GithubButton href="hhtps://github.com" target="_blank">
-        Github
-      </GithubButton>
+      <Tagline>{tagline}</Tagline>
+      <Description>{description}</Description>
+      <Highlights>
+        {highlights.map((h) => (
+          <li key={h}>{h}</li>
+        ))}
+      </Highlights>
+      <Tags>
+        {tags.map((t) => (
+          <Tag key={t}>#{t}</Tag>
+        ))}
+      </Tags>
+      <Links>
+        <Repo href={github} target="_blank" rel="noreferrer">
+          <Github fill="currentColor" /> GitHub
+        </Repo>
+        <Repo href={gitlab} target="_blank" rel="noreferrer">
+          <Gitlab fill="currentColor" /> GitLab
+        </Repo>
+      </Links>
     </Box>
   );
 }
