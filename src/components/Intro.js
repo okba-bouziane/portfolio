@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import Me from '../assets/Images/20220707_203952-removebg.png'
+import Me from '../assets/Images/okba.png'
 import { Profile } from '../Data/profile'
 
 const mobile = '@media (max-width: 50em)'
@@ -59,7 +59,7 @@ display: flex;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 0%);
-  width: 70%;
+  width: 90%;
   max-height: 100%;
   object-fit: contain;
   object-position: bottom;
