@@ -7,16 +7,18 @@ import PowerButton from "../subComponents/PowerButton";
 import SocialIcons from "../subComponents/SocialIcons";
 import { YinYang } from "./AllSvgs";
 import Intro from "./Intro";
-import { Toaster, toast } from "react-hot-toast";
-import { color } from "@mui/system";
-import styledComponents from "styled-components";
+import { Profile } from "../Data/profile";
+
+const mobile = "@media (max-width: 50em)";
 
 const MainContainer = styled(motion.div)`
   background: ${(props) => props.theme.body};
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   position: relative;
+
   a,
   h2,
   h3,
@@ -25,6 +27,10 @@ const MainContainer = styled(motion.div)`
   h6 {
     font-family: "Karla", sans-serif;
     font-weight: 500;
+  }
+
+  h2 {
+    font-size: calc(1rem + 0.6vw);
   }
 `;
 
@@ -38,27 +44,49 @@ const Contact = styled.a`
   top: 2rem;
   right: calc(1rem + 2vw);
   text-decoration: none;
-  z-index: 1;
+  z-index: 3;
+
+  ${mobile} {
+    top: 1.4rem;
+    color: ${(props) => (props.$click ? props.theme.body : props.theme.text)};
+    transition: color 1s ease;
+  }
 `;
 
-const Blog = styled(NavLink)`
-  color: ${(props) => props.theme.text};
+const NavItem = styled(NavLink)`
+  color: ${(props) => (props.$click ? props.theme.body : props.theme.text)};
+  text-decoration: none;
+  z-index: 3;
+  transition: color 1s ease;
+`;
+
+const ExperienceLink = styled(NavItem)`
   position: absolute;
   top: 50%;
   right: calc(1rem + 2vw);
   transform: rotate(90deg) translate(-50%, -50%);
-  text-decoration: none;
-  z-index: 1;
+  transform-origin: center;
+  color: ${(props) => props.theme.text};
+
+  ${mobile} {
+    top: 7rem;
+    right: 22%;
+    transform: none;
+    color: ${(props) => (props.$click ? props.theme.body : props.theme.text)};
+  }
 `;
 
-const Work = styled(NavLink)`
-  color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
+const WorkLink = styled(NavItem)`
   position: absolute;
   top: 50%;
   left: calc(1rem + 2vw);
   transform: translate(-50%, -50%) rotate(-90deg);
-  text-decoration: none;
-  z-index: 1;
+
+  ${mobile} {
+    top: 7rem;
+    left: 22%;
+    transform: none;
+  }
 `;
 
 const BottomBar = styled.div`
@@ -67,56 +95,94 @@ const BottomBar = styled.div`
   left: 0;
   right: 0;
   width: 100%;
-
   display: flex;
   justify-content: space-evenly;
+
+  ${mobile} {
+    a {
+      color: ${(props) => props.theme.text};
+    }
+  }
 `;
 
-const About = styled(NavLink)`
-  color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
-  text-decoration: none;
-  z-index: 1;
-`;
-
-const Skills = styled(NavLink)`
+const SkillsLink = styled(NavItem)`
   color: ${(props) => props.theme.text};
-  z-index: 1;
 `;
 
 const rotate = keyframes`
-from{
-  transform: rotate(0);
-}to{
-  transform: rotate(360deg);
-
-}
-
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
 `;
 
-const Center = styled.button`
+const Center = styled.div`
   position: absolute;
-  top: ${(props) => (props.click ? "85%" : "50%")};
-  left: ${(props) => (props.click ? "92%" : "50%")};
+  top: ${(props) => (props.$click ? "85%" : "50%")};
+  left: ${(props) => (props.$click ? "92%" : "50%")};
   transform: translate(-50%, -50%);
-  border: none;
-  outline: none;
-  background-color: transparent;
-  cursor: pointer;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   transition: all 1s ease;
+  z-index: 2;
 
-  & > :first-child {
+  ${mobile} {
+    top: ${(props) => (props.$click ? "90%" : "50%")};
+    left: ${(props) => (props.$click ? "88%" : "50%")};
+  }
+`;
+
+const Spinner = styled.button`
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: ${(props) => props.theme.text};
+  cursor: pointer;
+  padding: 0;
+  line-height: 0;
+
+  svg {
     animation: ${rotate} infinite 1.5s linear;
+    width: ${(props) => (props.$click ? "120px" : "200px")};
+    height: ${(props) => (props.$click ? "120px" : "200px")};
+    transition: width 1s ease, height 1s ease;
   }
 
-  & > :last-child {
-    display: ${(props) => (props.click ? "none" : "inline-block")};
-    padding-top: 1rem;
+  &:focus-visible {
+    outline: 2px dashed ${(props) => props.theme.text};
+    outline-offset: 6px;
+    border-radius: 50%;
+  }
+
+  ${mobile} {
+    svg {
+      width: ${(props) => (props.$click ? "70px" : "150px")};
+      height: ${(props) => (props.$click ? "70px" : "150px")};
+    }
+  }
+`;
+
+const Hint = styled.span`
+  display: ${(props) => (props.$click ? "none" : "inline-block")};
+  padding-top: 1rem;
+  font-family: "Ubuntu Mono", monospace;
+  color: ${(props) => props.theme.text};
+`;
+
+const ResumeButton = styled.a`
+  display: ${(props) => (props.$click ? "none" : "inline-block")};
+  padding: 0.5rem 1.2rem;
+  margin-top: 1rem;
+  color: ${(props) => props.theme.text};
+  text-decoration: none;
+  border: 1px solid ${(props) => props.theme.text};
+  border-radius: 15px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: ${(props) => props.theme.text};
+    color: ${(props) => props.theme.body};
   }
 `;
 
@@ -126,222 +192,81 @@ const DarkDiv = styled.div`
   background-color: #000;
   bottom: 0;
   right: 50%;
-  width: ${(props) => (props.click ? "50%" : "0%")};
-  height: ${(props) => (props.click ? "100%" : "0%")};
+  width: ${(props) => (props.$click ? "50%" : "0%")};
+  height: ${(props) => (props.$click ? "100%" : "0%")};
   z-index: 1;
   transition: height 0.5s ease, width 1s ease 0.5s;
+
+  ${mobile} {
+    right: 0;
+    width: ${(props) => (props.$click ? "100%" : "0%")};
+    height: ${(props) => (props.$click ? "50%" : "0%")};
+    bottom: auto;
+    transition: width 0.5s ease, height 1s ease 0.5s;
+  }
 `;
 
-// const down = {
-//   open: {
-//     initial:{opacity: 0 },
-//     animate:{opacity: 1, y: 0},
-//     exit:{opacity: 0, y: '-100vh'},
-//     transition:{ease:"circOut",type:"tween",duration: 0.5},
-//   }
-// }
+const navAnim = (fromY) => ({
+  initial: { y: fromY },
+  animate: { y: 0, transition: { type: "spring", duration: 1.5, delay: 1 } },
+  whileHover: { scale: 1.1 },
+  whileTap: { scale: 0.9 },
+});
 
-// const left  = {
-//   open: {
-//     initial:{opacity: 0 },
-//     animate:{opacity: 1, x: 0},
-//     exit:{opacity: 0, x: '-100vw'},
-//     transition:{ease:"circOut",type:"tween",duration: 0.5},
-//   }
-// }
-
-// const right  = {
-//   open: {
-//     initial:{opacity: 0 },
-//     animate:{opacity: 1, x: 0},
-//     exit:{opacity: 0, x: '100vw'},
-//     transition:{ease:"circOut",type:"tween",duration: 0.5},
-//   }
-// }
-
-// const variants =
-
-const Button = styled.a`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0.5rem;
-  padding-bottom: 0.75rem;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid black;
-  text-align: center;
-  margin-top: 1rem;
-  border-radius: 15px;
-`;
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 1, y: "-100vh", transition: { ease: "circOut", type: "tween", duration: 1 } },
+};
 
 const Main = () => {
   const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
-
-  const handleAnimations = (updatedVariants) => setVariants(updatedVariants);
-
-  const [variants, setVariants] = useState({
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, y: 0 },
-    exit: { opacity: 1, y: "-100vh" },
-    transition: { ease: "circOut", type: "tween", duration: 1 },
-  });
-
-  // const [isOpen, setIsOpen] = useState(false)
 
   return (
-    // initial={{opacity: 0 }}
-    // animate={{opacity: 1, y: 0}}
-    // exit={{opacity: 0, y: '-100vh'}}
-    // transition={{ease:"circOut",type:"tween",duration: 0.5}}
-    // initial={{opacity: 0}}
-    // animate={{opacity: 1, x: 0}}
-    // exit={{opacity: 1, x: '100vw'}}
-    // transition={{ease:"circOut",type:"tween",duration: 1}}
-    <MainContainer
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      transition="transition"
-      variants={variants}
-    >
-      <DarkDiv click={click} />
+    <MainContainer initial="hidden" animate="visible" exit="exit" variants={variants}>
+      <DarkDiv $click={click} />
       <Container>
         <PowerButton />
         <LogoComponent theme={click ? "dark" : "light"} />
         <SocialIcons theme={click ? "dark" : "light"} />
-        <Center click={click}>
-          <YinYang
-            onClick={() => handleClick()}
-            width={click ? 120 : 200}
-            height={click ? 120 : 200}
-            fill="currentColor"
-          />
 
-          <Button href="/okba-resume.pdf" download>
+        <Center $click={click}>
+          <Spinner
+            $click={click}
+            onClick={() => setClick(!click)}
+            aria-label={click ? "Hide introduction" : "Show introduction"}
+            aria-expanded={click}
+          >
+            <YinYang fill="currentColor" />
+          </Spinner>
+          <Hint $click={click}>click here</Hint>
+          <ResumeButton $click={click} href={Profile.resume} target="_blank" rel="noreferrer">
             My Resume
-          </Button>
+          </ResumeButton>
         </Center>
 
-        <Contact
-          href="mailto:9kbabouziane@gmail.com"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <motion.h2
-            initial={{
-              y: -200,
-              transition: { type: "spring", duration: 1.5, delay: 1 },
-            }}
-            animate={{
-              y: 0,
-              transition: { type: "spring", duration: 1.5, delay: 1 },
-            }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            Say hi..
-          </motion.h2>
+        <Contact $click={click} href={`mailto:${Profile.email}`}>
+          <motion.h2 {...navAnim(-200)}>Say hi..</motion.h2>
         </Contact>
 
-        <Blog to="">
-          <motion.h2
-            onClick={() =>
-              toast("Coming Soon..", {
-                duration: 3000,
-                position: "top-center",
-                style: { background: "#FCF6F4", color: "#000" },
-              })
-            }
-            initial={{
-              y: -200,
-              transition: { type: "spring", duration: 1.5, delay: 1 },
-            }}
-            animate={{
-              y: 0,
-              transition: { type: "spring", duration: 1.5, delay: 1 },
-            }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            Blog
-          </motion.h2>
-        </Blog>
-        <Toaster />
-        <Work
-          to="/"
-          // onClick={() =>
-          //   handleAnimations({
-          //     ...variants,
-          //     exit: { opacity: 0, x: "100vw" },
-          //     visible: { opacity: 1, x: 0 },
-          //   })
-          // }
-          onClick={() =>
-            toast("Coming Soon..", {
-              duration: 3000,
-              position: "top-center",
-              style: { background: "#FCF6F4", color: "#000" },
-            })
-          }
-          click={click}
-          // click={() => {
-          //   setVariants({...variants, exit :{opacity : 0, y:'100vh'}, visible: { opacity: 1, y: 0 }});
-          //   click();
-          // }}
-        >
-          <motion.h2
-            initial={{
-              y: -200,
-              transition: { type: "spring", duration: 1.5, delay: 1 },
-            }}
-            animate={{
-              y: 0,
-              transition: { type: "spring", duration: 1.5, delay: 1 },
-            }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            Work
-          </motion.h2>
-        </Work>
+        <ExperienceLink to="/experience" $click={click}>
+          <motion.h2 {...navAnim(-200)}>Experience</motion.h2>
+        </ExperienceLink>
+
+        <WorkLink to="/work" $click={click}>
+          <motion.h2 {...navAnim(-200)}>Work</motion.h2>
+        </WorkLink>
+
         <BottomBar>
-          <About to="/about" click={click}>
-            <motion.h2
-              initial={{
-                y: 200,
-                transition: { type: "spring", duration: 1.5, delay: 1 },
-              }}
-              animate={{
-                y: 0,
-                transition: { type: "spring", duration: 1.5, delay: 1 },
-              }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              About.
-            </motion.h2>
-          </About>
-          <Skills to="/skills" click={click}>
-            <motion.h2
-              initial={{
-                y: 200,
-                transition: { type: "spring", duration: 1.5, delay: 1 },
-              }}
-              animate={{
-                y: 0,
-                transition: { type: "spring", duration: 1.5, delay: 1 },
-              }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              My Skills.
-            </motion.h2>
-          </Skills>
+          <NavItem to="/about" $click={click}>
+            <motion.h2 {...navAnim(200)}>About.</motion.h2>
+          </NavItem>
+          <SkillsLink to="/skills">
+            <motion.h2 {...navAnim(200)}>My Skills.</motion.h2>
+          </SkillsLink>
         </BottomBar>
       </Container>
-      {click ? <Intro click={click} /> : null}
+      {click ? <Intro /> : null}
     </MainContainer>
   );
 };

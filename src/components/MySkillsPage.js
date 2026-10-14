@@ -1,22 +1,31 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { LightTheme } from "./Theme";
-import { Design, Develope } from "./AllSvgs";
+import { Develope, YinYang } from "./AllSvgs";
 import PowerButton from "../subComponents/PowerButton";
 import LogoComponent from "../subComponents/LogoComponent";
 import SocialIcons from "../subComponents/SocialIcons";
 import ParticleComponent from "../subComponents/ParticleComponent";
+import BigTitle from "../subComponents/BigTitle";
+import { SkillGroups } from "../Data/profile";
 
 import { motion } from "framer-motion";
 
 const Box = styled(motion.div)`
   background-color: ${(props) => props.theme.body};
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  gap: 2rem;
+  padding: 8rem 4rem 4rem 6rem;
+  box-sizing: border-box;
+
+  @media (max-width: 50em) {
+    flex-direction: column;
+    padding: 6rem 1.2rem 10rem 3.5rem;
+  }
 `;
 
 const Main = styled.div`
@@ -25,107 +34,106 @@ const Main = styled.div`
   background-color: ${(props) => props.theme.body};
   padding: 2rem;
   width: 30vw;
-  height: 60vh;
+  min-height: 60vh;
   z-index: 3;
   line-height: 1.5;
-
+  cursor: default;
   font-family: "Ubuntu Mono", monospace;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 1rem;
+  transition: all 0.3s ease;
 
   &:hover {
     color: ${(props) => props.theme.body};
     background-color: ${(props) => props.theme.text};
   }
+
+  @media (max-width: 50em) {
+    width: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: 1.4rem;
+  }
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: calc(2em +2vw);
+  font-size: calc(1em + 1vw);
 
   & > *:first-child {
     margin-right: 1rem;
   }
-  ${Main}:hover & {
-    & > * {
-      fill: ${(props) => props.theme.body};
-    }
+
+  ${Main}:hover & > * {
+    fill: ${(props) => props.theme.body};
   }
 `;
 
 const Description = styled.div`
-  color: ${(props) => props.theme.text};
-  font-size: calc(0.4em + 1vw);
-  padding: 0.5rem 0;
-
-  ${Main}:hover & {
-    color: ${(props) => props.theme.body};
-  }
+  font-size: calc(0.6em + 0.6vw);
 
   strong {
-    margin-bottom: 1rem;
+    display: block;
+    margin-bottom: 0.3rem;
     text-transform: uppercase;
   }
-  ul,
   p {
-    margin-left: 2rem;
+    margin-left: 1rem;
+  }
+
+  @media (max-width: 50em) {
+    font-size: 0.95rem;
   }
 `;
 
-const variants = {
-  hidden: { opacity: 1, y: 0 },
-  visible: { opacity: 1 },
-  exit: { opacity: 1, y: "100vh" },
-  transition: { ease: "circOut", type: "tween", duration: 1 },
-};
+const Panel = ({ icon, title, intro, groups }) => (
+  <Main>
+    <Title>
+      {icon} {title}
+    </Title>
+    <Description>{intro}</Description>
+    {groups.map((g) => (
+      <Description key={g.title}>
+        <strong>{g.title}</strong>
+        <p>{g.items.join(", ")}</p>
+      </Description>
+    ))}
+  </Main>
+);
 
 const MySkillsPage = () => {
   return (
     <ThemeProvider theme={LightTheme}>
       <Box
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        transition="transition"
-        variants={variants}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 1, y: "100vh" }}
+        transition={{ ease: "circOut", type: "tween", duration: 1 }}
       >
         <LogoComponent />
         <SocialIcons theme={"light"} />
-        <PowerButton theme={"light"} />
+        <PowerButton />
         <ParticleComponent theme="light" />
-        {/* <Main>
-          <Title>
-              <Design width={40} height={40} /> Desginer
-          </Title>
-          <Description>
-            I love to create design which speaks, Keep it clean, minmal and simple.
-
-          </Description>
-
-        </Main> */}
-        <Main>
-          <Title>
-            <Develope width={50} height={50} /> Full Stack Developer
-          </Title>
-          <Description>
-            I value the business or brand for which I'm creating, thus I enjoy
-            bringing new ideas to life.
-          </Description>
-          <Description>
-            <strong>Skills</strong>
-            <p>
-              Html, Css, Js, React, Node, Redux, Sass, Bootstrap, Tailwind,
-              Firebase ect..
-            </p>
-          </Description>
-          <Description>
-            {/* <strong>Tools</strong>
-              <p>Html, Css, Js, React, Redux, Sass, Bootstrap, Tailwind, Firebase etc.</p> */}
-          </Description>
-        </Main>
+        <Panel
+          icon={<Develope width={40} height={40} />}
+          title="Full-Stack"
+          intro="I build end-to-end products with clean architecture, solid tests and secure APIs."
+          groups={SkillGroups.filter((g) =>
+            ["Frontend", "Backend & APIs", "Data"].includes(g.title)
+          )}
+        />
+        <Panel
+          icon={<YinYang width={40} height={40} />}
+          title="AI & Security"
+          intro="I bring LLMs into real apps — and make sure only the right people (and agents) get access."
+          groups={SkillGroups.filter((g) =>
+            ["AI & ML", "Auth & Security", "DevOps & Practices"].includes(g.title)
+          )}
+        />
+        <BigTitle text="SKILLS" top="80%" right="30%" />
       </Box>
     </ThemeProvider>
   );

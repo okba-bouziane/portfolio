@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { Facebook, Github, Twitter, Linkedin } from "../components/AllSvgs";
+import { Github, Gitlab, Linkedin, Mail } from "../components/AllSvgs";
 import { DarkTheme } from "../components/Theme";
+import { Profile } from "../Data/profile";
 
 const Icons = styled.div`
   display: flex;
@@ -18,6 +18,18 @@ const Icons = styled.div`
   & > *:not(:last-child) {
     margin: 0.5rem 0;
   }
+
+  a {
+    display: block;
+    transition: transform 0.2s ease;
+  }
+  a:hover {
+    transform: translateY(-3px);
+  }
+
+  @media (max-width: 50em) {
+    left: 1rem;
+  }
 `;
 
 const Line = styled(motion.span)`
@@ -25,65 +37,41 @@ const Line = styled(motion.span)`
   height: 8rem;
   background-color: ${(props) =>
     props.color === "dark" ? DarkTheme.text : DarkTheme.body};
+
+  @media (max-width: 50em) {
+    height: 4rem !important;
+  }
 `;
 
+const links = [
+  { href: Profile.github, label: "GitHub", Icon: Github },
+  { href: Profile.gitlab, label: "GitLab", Icon: Gitlab },
+  { href: Profile.linkedin, label: "LinkedIn", Icon: Linkedin },
+  { href: `mailto:${Profile.email}`, label: "Email", Icon: Mail },
+];
+
 const SocialIcons = (props) => {
+  const fill = props.theme === "dark" ? DarkTheme.text : DarkTheme.body;
+
   return (
     <Icons>
-      <motion.div
-        initial={{ transform: "scale(0)" }}
-        animate={{ scale: [0.1, 0.5, 1.6, 1.2] }}
-        transition={{ type: "spring", duration: 1, delay: 1 }}
-      >
-        <a href="http://github.com/3kba" rel="noreferrer" target="_blank">
-          <Github
-            width={25}
-            height={25}
-            fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body}
-          />
-        </a>
-      </motion.div>
-      <motion.div
-        initial={{ transform: "scale(0)" }}
-        animate={{ scale: [0.1, 0.5, 1.6, 1.2] }}
-        transition={{ type: "spring", duration: 1, delay: 1.2 }}
-      >
-        <a
-          href="https://www.linkedin.com/in/okba-bouziane/"
-          rel="noreferrer"
-          target="_blank"
+      {links.map(({ href, label, Icon }, i) => (
+        <motion.div
+          key={label}
+          initial={{ scale: 0 }}
+          animate={{ scale: [0, 1, 1.5, 1] }}
+          transition={{ type: "spring", duration: 1, delay: 1 + i * 0.2 }}
         >
-          <Linkedin
-            width={25}
-            height={25}
-            fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body}
-          />
-        </a>
-      </motion.div>
-      <motion.div
-        initial={{ transform: "scale(0)" }}
-        animate={{ scale: [0.1, 0.5, 1.6, 1.2] }}
-        transition={{ type: "spring", duration: 1, delay: 1.4 }}
-      ></motion.div>
-      <motion.div
-        initial={{ transform: "scale(0)" }}
-        animate={{ scale: [0.1, 0.5, 1.6, 1.2] }}
-        transition={{ type: "spring", duration: 1, delay: 1.6 }}
-      ></motion.div>
+          <a href={href} rel="noreferrer" target="_blank" aria-label={label} title={label}>
+            <Icon width={25} height={25} fill={fill} />
+          </a>
+        </motion.div>
+      ))}
       <Line
         color={props.theme}
-        initial={{
-          height: 0,
-          transition: { type: "spring", duration: 1.5, delay: 1 },
-        }}
-        animate={{
-          height: "8rem",
-        }}
-        transition={{
-          type: "spring",
-          duration: 1,
-          delay: 0.8,
-        }}
+        initial={{ height: 0 }}
+        animate={{ height: "8rem" }}
+        transition={{ type: "spring", duration: 1, delay: 0.8 }}
       />
     </Icons>
   );
