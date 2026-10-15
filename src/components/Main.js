@@ -82,8 +82,7 @@ const ExperienceLink = styled(NavItem)`
   position: absolute;
   top: 50%;
   right: calc(1rem + 2vw);
-  transform: rotate(90deg) translate(-50%, -50%);
-  transform-origin: center;
+  transform: translate(50%, -50%) rotate(90deg);
   color: ${(props) => props.theme.text};
 
   ${mobile} {
