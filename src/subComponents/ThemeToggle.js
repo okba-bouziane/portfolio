@@ -4,10 +4,12 @@ import { useThemeMode } from '../components/ThemeMode'
 import { Moon, Sun } from '../components/AllSvgs'
 
 const Button = styled.button`
-position: fixed;
+position: ${props => (props.$inline ? 'static' : 'fixed')};
 top: 2rem;
 right: calc(1rem + 2vw);
 z-index: 5;
+flex-shrink: 0;
+box-sizing: border-box;
 width: 2.5rem;
 height: 2.5rem;
 padding: 0;
@@ -44,7 +46,7 @@ svg {
 }
 `
 
-const ThemeToggle = ({ invertOnMobile = false }) => {
+const ThemeToggle = ({ inline = false, invertOnMobile = false }) => {
   const { mode, toggleMode } = useThemeMode()
   const next = mode === 'dark' ? 'light' : 'dark'
 
@@ -52,6 +54,7 @@ const ThemeToggle = ({ invertOnMobile = false }) => {
     <Button
       type="button"
       onClick={toggleMode}
+      $inline={inline}
       $invertOnMobile={invertOnMobile}
       aria-label={`Switch to ${next} mode`}
       title={`Switch to ${next} mode`}

@@ -11,6 +11,7 @@ transform: translate(-50%, 0);
 
 background-color: #FCF6F4;
 padding: 0.3rem;
+box-sizing: border-box;
 border-radius: 50%;
 border: 1px solid #000;
 width: 2.5rem;
