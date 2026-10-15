@@ -19,7 +19,6 @@ const MainContainer = styled(motion.div)`
   overflow: hidden;
   position: relative;
 
-  a,
   h2,
   h3,
   h4,
