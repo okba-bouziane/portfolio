@@ -39,17 +39,33 @@ const Container = styled.div`
   padding: 2rem;
 `;
 
-const Contact = styled.a`
-  color: ${(props) => props.theme.text};
+const TopRight = styled.div`
   position: absolute;
   top: 2rem;
-  right: calc(4.5rem + 2vw);
-  text-decoration: none;
-  z-index: 3;
+  right: calc(1rem + 2vw);
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  z-index: 5;
+
+  h2 {
+    line-height: 1;
+  }
 
   ${mobile} {
-    top: 1.4rem;
-    right: 4rem;
+    top: 1.5rem;
+    right: 1rem;
+    height: 2rem;
+    gap: 0.8rem;
+  }
+`;
+
+const Contact = styled.a`
+  color: ${(props) => props.theme.text};
+  text-decoration: none;
+
+  ${mobile} {
     color: ${(props) => (props.$click ? props.theme.body : props.theme.text)};
     transition: color 1s ease;
   }
@@ -231,7 +247,6 @@ const Main = () => {
         <PowerButton />
         <LogoComponent inverted={click} />
         <SocialIcons inverted={click} />
-        <ThemeToggle invertOnMobile={click} />
 
         <Center $click={click}>
           <Spinner
@@ -248,9 +263,12 @@ const Main = () => {
           </ResumeButton>
         </Center>
 
-        <Contact $click={click} href={`mailto:${Profile.email}`}>
-          <motion.h2 {...navAnim(-200)}>Say hi..</motion.h2>
-        </Contact>
+        <TopRight>
+          <Contact $click={click} href={`mailto:${Profile.email}`}>
+            <motion.h2 {...navAnim(-200)}>Say hi..</motion.h2>
+          </Contact>
+          <ThemeToggle inline invertOnMobile={click} />
+        </TopRight>
 
         <ExperienceLink to="/experience" $click={click}>
           <motion.h2 {...navAnim(-200)}>Experience</motion.h2>
