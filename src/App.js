@@ -1,16 +1,13 @@
 import GlobalStyle from './globalStyled';
-import { ThemeProvider } from 'styled-components';
-import { LightTheme } from './components/Theme';
+import { ThemeModeProvider } from './components/ThemeMode';
 import AnimatedRoutes from './components/AnimatedRoutes';
 
 function App() {
   return (
-    <>
+    <ThemeModeProvider>
       <GlobalStyle />
-      <ThemeProvider theme={LightTheme}>
-        <AnimatedRoutes />
-      </ThemeProvider>
-    </>
+      <AnimatedRoutes />
+    </ThemeModeProvider>
   );
 }
 

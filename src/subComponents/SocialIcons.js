@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
 import { Github, Gitlab, Linkedin, Mail } from "../components/AllSvgs";
-import { DarkTheme } from "../components/Theme";
 import { Profile } from "../Data/profile";
 
 const Icons = styled.div`
@@ -14,6 +13,8 @@ const Icons = styled.div`
   bottom: 0;
   left: 2rem;
   z-index: 3;
+  color: ${(props) => (props.$inverted ? props.theme.body : props.theme.text)};
+  transition: color 1s ease;
 
   & > *:not(:last-child) {
     margin: 0.5rem 0;
@@ -21,6 +22,7 @@ const Icons = styled.div`
 
   a {
     display: block;
+    color: inherit;
     transition: transform 0.2s ease;
   }
   a:hover {
@@ -29,14 +31,14 @@ const Icons = styled.div`
 
   @media (max-width: 50em) {
     left: 1rem;
+    color: ${(props) => props.theme.text};
   }
 `;
 
 const Line = styled(motion.span)`
   width: 2px;
   height: 8rem;
-  background-color: ${(props) =>
-    props.color === "dark" ? DarkTheme.text : DarkTheme.body};
+  background-color: currentColor;
 
   @media (max-width: 50em) {
     height: 4rem !important;
@@ -51,10 +53,8 @@ const links = [
 ];
 
 const SocialIcons = (props) => {
-  const fill = props.theme === "dark" ? DarkTheme.text : DarkTheme.body;
-
   return (
-    <Icons>
+    <Icons $inverted={props.inverted}>
       {links.map(({ href, label, Icon }, i) => (
         <motion.div
           key={label}
@@ -63,12 +63,11 @@ const SocialIcons = (props) => {
           transition={{ type: "spring", duration: 1, delay: 1 + i * 0.2 }}
         >
           <a href={href} rel="noreferrer" target="_blank" aria-label={label} title={label}>
-            <Icon width={25} height={25} fill={fill} />
+            <Icon width={25} height={25} fill="currentColor" />
           </a>
         </motion.div>
       ))}
       <Line
-        color={props.theme}
         initial={{ height: 0 }}
         animate={{ height: "8rem" }}
         transition={{ type: "spring", duration: 1, delay: 0.8 }}

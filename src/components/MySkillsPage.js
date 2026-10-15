@@ -1,11 +1,11 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { LightTheme } from "./Theme";
+import styled from "styled-components";
 import { Develope, YinYang } from "./AllSvgs";
 import PowerButton from "../subComponents/PowerButton";
 import LogoComponent from "../subComponents/LogoComponent";
 import SocialIcons from "../subComponents/SocialIcons";
 import ParticleComponent from "../subComponents/ParticleComponent";
+import ThemeToggle from "../subComponents/ThemeToggle";
 import BigTitle from "../subComponents/BigTitle";
 import { SkillGroups } from "../Data/profile";
 
@@ -71,6 +71,11 @@ const Title = styled.h2`
     margin-right: 1rem;
   }
 
+  & > * {
+    fill: ${(props) => props.theme.text};
+    transition: fill 0.3s ease;
+  }
+
   ${Main}:hover & > * {
     fill: ${(props) => props.theme.body};
   }
@@ -110,25 +115,25 @@ const Panel = ({ icon, title, intro, groups }) => (
 
 const MySkillsPage = () => {
   return (
-    <ThemeProvider theme={LightTheme}>
-      <Box
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 1, y: "100vh" }}
-        transition={{ ease: "circOut", type: "tween", duration: 1 }}
-      >
-        <LogoComponent />
-        <SocialIcons theme={"light"} />
-        <PowerButton />
-        <ParticleComponent theme="light" />
-        <Grid>
-          <Panel
-            icon={<Develope width={40} height={40} />}
-            title="Full-Stack"
-            intro="I build end-to-end products with clean architecture, solid tests and secure APIs."
-            groups={SkillGroups.filter((g) =>
-              ["Frontend", "Backend & APIs", "Data"].includes(g.title)
-            )}
+    <Box
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 1, y: "100vh" }}
+      transition={{ ease: "circOut", type: "tween", duration: 1 }}
+    >
+      <LogoComponent />
+      <SocialIcons />
+      <PowerButton />
+      <ParticleComponent />
+      <ThemeToggle />
+      <Grid>
+        <Panel
+          icon={<Develope width={40} height={40} />}
+          title="Full-Stack"
+          intro="I build end-to-end products with clean architecture, solid tests and secure APIs."
+          groups={SkillGroups.filter((g) =>
+            ["Frontend", "Backend & APIs", "Data"].includes(g.title)
+          )}
           />
           <Panel
             icon={<YinYang width={40} height={40} />}
@@ -141,7 +146,6 @@ const MySkillsPage = () => {
         </Grid>
         <BigTitle text="SKILLS" top="80%" right="30%" />
       </Box>
-    </ThemeProvider>
   );
 };
 

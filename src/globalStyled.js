@@ -11,7 +11,8 @@ h1,h2,h3,h4,h5,h6{
 }
 
 html, body {
-    background-color: #FCF6F4;
+    background-color: ${props => props.theme.body};
+    color-scheme: ${props => props.theme.mode};
 }
 
 body{

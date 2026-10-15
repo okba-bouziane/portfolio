@@ -89,10 +89,10 @@ const AboutPage = () => {
         exit={{ opacity: 1, y: "100vh" }}
         transition={{ ease: "circOut", type: "tween", duration: 1 }}
       >
-        <LogoComponent theme={"dark"} />
-        <SocialIcons theme={"dark"} />
+        <LogoComponent />
+        <SocialIcons />
         <PowerButton />
-        <ParticleComponent theme={"dark"} />
+        <ParticleComponent />
         <Spaceman>
           <img src={astroman} alt="" />
         </Spaceman>

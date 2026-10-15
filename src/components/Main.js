@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import LogoComponent from "../subComponents/LogoComponent";
 import PowerButton from "../subComponents/PowerButton";
 import SocialIcons from "../subComponents/SocialIcons";
+import ThemeToggle from "../subComponents/ThemeToggle";
 import { YinYang } from "./AllSvgs";
 import Intro from "./Intro";
 import { Profile } from "../Data/profile";
@@ -18,6 +19,7 @@ const MainContainer = styled(motion.div)`
   height: 100dvh;
   overflow: hidden;
   position: relative;
+  transition: background-color 0.3s ease;
 
   h2,
   h3,
@@ -41,12 +43,13 @@ const Contact = styled.a`
   color: ${(props) => props.theme.text};
   position: absolute;
   top: 2rem;
-  right: calc(1rem + 2vw);
+  right: calc(4.5rem + 2vw);
   text-decoration: none;
   z-index: 3;
 
   ${mobile} {
     top: 1.4rem;
+    right: 4rem;
     color: ${(props) => (props.$click ? props.theme.body : props.theme.text)};
     transition: color 1s ease;
   }
@@ -188,7 +191,7 @@ const ResumeButton = styled.a`
 const DarkDiv = styled.div`
   position: absolute;
   top: 0;
-  background-color: #000;
+  background-color: ${(props) => props.theme.text};
   bottom: 0;
   right: 50%;
   width: ${(props) => (props.$click ? "50%" : "0%")};
@@ -226,8 +229,9 @@ const Main = () => {
       <DarkDiv $click={click} />
       <Container>
         <PowerButton />
-        <LogoComponent theme={click ? "dark" : "light"} />
-        <SocialIcons theme={click ? "dark" : "light"} />
+        <LogoComponent inverted={click} />
+        <SocialIcons inverted={click} />
+        <ThemeToggle invertOnMobile={click} />
 
         <Center $click={click}>
           <Spinner

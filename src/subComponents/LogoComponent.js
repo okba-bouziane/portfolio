@@ -1,11 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { DarkTheme } from '../components/Theme';
 
 const Logo = styled(NavLink)`
 display: inline-block;
-color: ${props => props.$color === 'dark' ? DarkTheme.text : DarkTheme.body};
+color: ${props => props.$inverted ? props.theme.body : props.theme.text};
 font-family: 'Pacifico', cursive;
 font-size: xx-large;
 text-decoration: none;
@@ -24,7 +23,7 @@ transition: color 1s ease;
 
 const LogoComponent = (props) => {
   return (
-    <Logo to="/" $color={props.theme} aria-label="Home">OB</Logo>
+    <Logo to="/" $inverted={props.inverted} aria-label="Home">OB</Logo>
   )
 }
 

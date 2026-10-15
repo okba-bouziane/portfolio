@@ -29,10 +29,10 @@ const WorkPage = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.5 } }}
       >
-        <LogoComponent theme="dark" />
+        <LogoComponent />
         <PowerButton />
-        <SocialIcons theme="dark" />
-        <ParticleComponent theme="dark" />
+        <SocialIcons />
+        <ParticleComponent />
 
         <Content>
           <Heading>Selected work</Heading>
