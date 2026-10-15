@@ -1,11 +1,11 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import React, { createContext, useCallback, useContext, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { DarkTheme, LightTheme } from './Theme'
 
 // Light/dark preference for the light pages (Home, Skills, Experience).
-// About and Work always use the dark theme.
+// Light by default; About and Work always use the dark theme.
 
-const STORAGE_KEY = 'theme-mode'
+const STORAGE_KEY = 'color-mode'
 
 const ThemeModeContext = createContext({ mode: 'light', toggleMode: () => {} })
 
@@ -14,23 +14,21 @@ const initialMode = () => {
     const saved = window.localStorage.getItem(STORAGE_KEY)
     if (saved === 'light' || saved === 'dark') return saved
   } catch (e) {}
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark'
-  }
   return 'light'
 }
 
 export const ThemeModeProvider = ({ children }) => {
   const [mode, setMode] = useState(initialMode)
 
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, mode)
-    } catch (e) {}
-  }, [mode])
-
+  // Only an explicit click is remembered, so first visits always start light.
   const toggleMode = useCallback(() => {
-    setMode(m => (m === 'dark' ? 'light' : 'dark'))
+    setMode(m => {
+      const next = m === 'dark' ? 'light' : 'dark'
+      try {
+        window.localStorage.setItem(STORAGE_KEY, next)
+      } catch (e) {}
+      return next
+    })
   }, [])
 
   return (
