@@ -1,12 +1,12 @@
 import React from 'react'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { LightTheme } from './Theme'
 import { Experience, Education, Profile } from '../Data/profile'
 import LogoComponent from '../subComponents/LogoComponent'
 import PowerButton from '../subComponents/PowerButton'
 import SocialIcons from '../subComponents/SocialIcons'
 import ParticleComponent from '../subComponents/ParticleComponent'
+import ThemeToggle from '../subComponents/ThemeToggle'
 import { Page, Content, Heading, Lead } from '../subComponents/PageLayout'
 
 const SubHeading = styled.h2`
@@ -97,36 +97,36 @@ const fadeUp = {
 
 const ExperiencePage = () => {
   return (
-    <ThemeProvider theme={LightTheme}>
-      <Page
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0, transition: { duration: 0.5 } }}
-      >
-        <LogoComponent />
-        <PowerButton />
-        <SocialIcons theme="light" />
-        <ParticleComponent theme="light" />
+    <Page
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+    >
+      <LogoComponent />
+      <PowerButton />
+      <SocialIcons />
+      <ParticleComponent />
+      <ThemeToggle />
 
-        <Content>
-          <Heading>Experience</Heading>
-          <Lead>
-            6+ years shipping web and mobile products — from start-up MVPs to
-            B2B platforms used daily by hundreds of people.
-          </Lead>
-          <Timeline>
-            {Experience.map(job => (
-              <Entry key={job.company} {...fadeUp}>
-                <Row>
-                  <h3>{job.role} · {job.company}</h3>
-                  <span>{job.period}</span>
-                </Row>
-                <Row><span>{job.place}</span></Row>
-                <Points>
-                  {job.points.map(p => <li key={p}>{p}</li>)}
-                </Points>
-              </Entry>
-            ))}
+      <Content>
+        <Heading>Experience</Heading>
+        <Lead>
+          6+ years shipping web and mobile products — from start-up MVPs to
+          B2B platforms used daily by hundreds of people.
+        </Lead>
+        <Timeline>
+          {Experience.map(job => (
+            <Entry key={job.company} {...fadeUp}>
+              <Row>
+                <h3>{job.role} · {job.company}</h3>
+                <span>{job.period}</span>
+              </Row>
+              <Row><span>{job.place}</span></Row>
+              <Points>
+                {job.points.map(p => <li key={p}>{p}</li>)}
+              </Points>
+            </Entry>
+          ))}
           </Timeline>
 
           <SubHeading>Education</SubHeading>
@@ -147,7 +147,6 @@ const ExperiencePage = () => {
           </ResumeLink>
         </Content>
       </Page>
-    </ThemeProvider>
   )
 }
 

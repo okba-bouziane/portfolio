@@ -1,6 +1,7 @@
 
 
 export const LightTheme = {
+    mode:"light",
     body:"#FCF6F4",
     text:"#000000",
     fontFamily:"'Source Sans Pro', sans-serif",
@@ -9,6 +10,7 @@ export const LightTheme = {
 }
 
 export const DarkTheme = {
+    mode:"dark",
     body:"#000000",
     text:"#FCF6F4",
     fontFamily:"'Source Sans Pro', sans-serif",

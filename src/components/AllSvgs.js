@@ -213,3 +213,25 @@ export const Mail = (props) => {
     </svg>
   )
 }
+
+export const Sun = (props) => {
+  return (
+    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+      <path
+        fill={props.fill}
+        d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v1.5a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 17.5a1 1 0 0 1 1 1V21a1 1 0 1 1-2 0v-.5a1 1 0 0 1 1-1zM3 11h1.5a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2zm16.5 0H21a1 1 0 1 1 0 2h-1.5a1 1 0 1 1 0-2zM5.64 4.22l1.06 1.06a1 1 0 1 1-1.42 1.42L4.22 5.64a1 1 0 0 1 1.42-1.42zm12.08 12.08 1.06 1.06a1 1 0 1 1-1.42 1.42l-1.06-1.06a1 1 0 0 1 1.42-1.42zM18.78 4.22a1 1 0 0 1 0 1.42L17.72 6.7a1 1 0 1 1-1.42-1.42l1.06-1.06a1 1 0 0 1 1.42 0zM6.7 16.3a1 1 0 0 1 0 1.42l-1.06 1.06a1 1 0 1 1-1.42-1.42l1.06-1.06a1 1 0 0 1 1.42 0z"
+      />
+    </svg>
+  )
+}
+
+export const Moon = (props) => {
+  return (
+    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+      <path
+        fill={props.fill}
+        d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"
+      />
+    </svg>
+  )
+}
