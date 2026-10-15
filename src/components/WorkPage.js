@@ -8,7 +8,6 @@ import LogoComponent from '../subComponents/LogoComponent'
 import PowerButton from '../subComponents/PowerButton'
 import SocialIcons from '../subComponents/SocialIcons'
 import ParticleComponent from '../subComponents/ParticleComponent'
-import BigTitle from '../subComponents/BigTitle'
 import { Page, Content, Heading, Lead } from '../subComponents/PageLayout'
 
 const Grid = styled.div`
@@ -48,7 +47,6 @@ const WorkPage = () => {
             ))}
           </Grid>
         </Content>
-        <BigTitle text="WORK" top="10%" right="5%" />
       </Page>
     </ThemeProvider>
   )

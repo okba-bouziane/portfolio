@@ -7,7 +7,6 @@ import LogoComponent from '../subComponents/LogoComponent'
 import PowerButton from '../subComponents/PowerButton'
 import SocialIcons from '../subComponents/SocialIcons'
 import ParticleComponent from '../subComponents/ParticleComponent'
-import BigTitle from '../subComponents/BigTitle'
 import { Page, Content, Heading, Lead } from '../subComponents/PageLayout'
 
 const SubHeading = styled.h2`
@@ -147,7 +146,6 @@ const ExperiencePage = () => {
             Download full resume ↗
           </ResumeLink>
         </Content>
-        <BigTitle text="EXPERIENCE" top="75%" right="3%" />
       </Page>
     </ThemeProvider>
   )
