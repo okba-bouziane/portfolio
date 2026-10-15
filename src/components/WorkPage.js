@@ -9,43 +9,7 @@ import PowerButton from '../subComponents/PowerButton'
 import SocialIcons from '../subComponents/SocialIcons'
 import ParticleComponent from '../subComponents/ParticleComponent'
 import BigTitle from '../subComponents/BigTitle'
-
-const Box = styled(motion.div)`
-background-color: ${props => props.theme.body};
-min-height: 100vh;
-position: relative;
-overflow-x: hidden;
-`
-
-const Content = styled.div`
-position: relative;
-z-index: 2;
-max-width: 70rem;
-margin: 0 auto;
-padding: 8rem 6rem 6rem;
-
-@media (max-width: 50em) {
-  padding: 6rem 1.2rem 10rem 3.5rem;
-}
-`
-
-const Heading = styled.h1`
-color: ${props => props.theme.text};
-font-family: 'Karla', sans-serif;
-font-size: calc(1.6rem + 1.5vw);
-font-weight: 600;
-`
-
-const Lead = styled.p`
-color: ${props => `rgba(${props.theme.textRgba},0.75)`};
-font-family: 'Ubuntu Mono', monospace;
-font-size: calc(0.9rem + 0.3vw);
-margin: 1rem 0 3rem;
-max-width: 40rem;
-line-height: 1.6;
-
-a { color: ${props => props.theme.text}; }
-`
+import { Page, Content, Heading, Lead } from '../subComponents/PageLayout'
 
 const Grid = styled.div`
 display: grid;
@@ -61,7 +25,7 @@ const container = {
 const WorkPage = () => {
   return (
     <ThemeProvider theme={DarkTheme}>
-      <Box
+      <Page
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.5 } }}
@@ -85,7 +49,7 @@ const WorkPage = () => {
           </Grid>
         </Content>
         <BigTitle text="WORK" top="10%" right="5%" />
-      </Box>
+      </Page>
     </ThemeProvider>
   )
 }

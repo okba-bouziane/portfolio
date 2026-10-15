@@ -8,33 +8,7 @@ import PowerButton from '../subComponents/PowerButton'
 import SocialIcons from '../subComponents/SocialIcons'
 import ParticleComponent from '../subComponents/ParticleComponent'
 import BigTitle from '../subComponents/BigTitle'
-
-const Box = styled(motion.div)`
-background-color: ${props => props.theme.body};
-min-height: 100vh;
-position: relative;
-overflow-x: hidden;
-`
-
-const Content = styled.div`
-position: relative;
-z-index: 2;
-max-width: 60rem;
-margin: 0 auto;
-padding: 8rem 6rem 6rem;
-color: ${props => props.theme.text};
-font-family: 'Karla', sans-serif;
-
-@media (max-width: 50em) {
-  padding: 6rem 1.2rem 10rem 3.5rem;
-}
-`
-
-const Heading = styled.h1`
-font-size: calc(1.6rem + 1.5vw);
-font-weight: 600;
-margin-bottom: 2.5rem;
-`
+import { Page, Content, Heading, Lead } from '../subComponents/PageLayout'
 
 const SubHeading = styled.h2`
 font-size: calc(1.2rem + 0.8vw);
@@ -125,7 +99,7 @@ const fadeUp = {
 const ExperiencePage = () => {
   return (
     <ThemeProvider theme={LightTheme}>
-      <Box
+      <Page
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.5 } }}
@@ -137,6 +111,10 @@ const ExperiencePage = () => {
 
         <Content>
           <Heading>Experience</Heading>
+          <Lead>
+            6+ years shipping web and mobile products — from start-up MVPs to
+            B2B platforms used daily by hundreds of people.
+          </Lead>
           <Timeline>
             {Experience.map(job => (
               <Entry key={job.company} {...fadeUp}>
@@ -170,7 +148,7 @@ const ExperiencePage = () => {
           </ResumeLink>
         </Content>
         <BigTitle text="EXPERIENCE" top="75%" right="3%" />
-      </Box>
+      </Page>
     </ThemeProvider>
   )
 }
