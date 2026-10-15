@@ -16,16 +16,25 @@ const Box = styled(motion.div)`
   min-height: 100vh;
   position: relative;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  gap: 2rem;
-  padding: 8rem 4rem 4rem 6rem;
+  padding: 8rem 6rem 6rem;
   box-sizing: border-box;
 
   @media (max-width: 50em) {
-    flex-direction: column;
+    align-items: flex-start;
     padding: 6rem 1.2rem 10rem 3.5rem;
   }
+`;
+
+const Grid = styled.div`
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 70rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 2rem;
 `;
 
 const Main = styled.div`
@@ -33,9 +42,7 @@ const Main = styled.div`
   color: ${(props) => props.theme.text};
   background-color: ${(props) => props.theme.body};
   padding: 2rem;
-  width: 30vw;
-  min-height: 60vh;
-  z-index: 3;
+  box-sizing: border-box;
   line-height: 1.5;
   cursor: default;
   font-family: "Ubuntu Mono", monospace;
@@ -50,9 +57,6 @@ const Main = styled.div`
   }
 
   @media (max-width: 50em) {
-    width: 100%;
-    min-height: 0;
-    box-sizing: border-box;
     padding: 1.4rem;
   }
 `;
@@ -117,22 +121,24 @@ const MySkillsPage = () => {
         <SocialIcons theme={"light"} />
         <PowerButton />
         <ParticleComponent theme="light" />
-        <Panel
-          icon={<Develope width={40} height={40} />}
-          title="Full-Stack"
-          intro="I build end-to-end products with clean architecture, solid tests and secure APIs."
-          groups={SkillGroups.filter((g) =>
-            ["Frontend", "Backend & APIs", "Data"].includes(g.title)
-          )}
-        />
-        <Panel
-          icon={<YinYang width={40} height={40} />}
-          title="AI & Security"
-          intro="I bring LLMs into real apps — and make sure only the right people (and agents) get access."
-          groups={SkillGroups.filter((g) =>
-            ["AI & ML", "Auth & Security", "DevOps & Practices"].includes(g.title)
-          )}
-        />
+        <Grid>
+          <Panel
+            icon={<Develope width={40} height={40} />}
+            title="Full-Stack"
+            intro="I build end-to-end products with clean architecture, solid tests and secure APIs."
+            groups={SkillGroups.filter((g) =>
+              ["Frontend", "Backend & APIs", "Data"].includes(g.title)
+            )}
+          />
+          <Panel
+            icon={<YinYang width={40} height={40} />}
+            title="AI & Security"
+            intro="I bring LLMs into real apps — and make sure only the right people (and agents) get access."
+            groups={SkillGroups.filter((g) =>
+              ["AI & ML", "Auth & Security", "DevOps & Practices"].includes(g.title)
+            )}
+          />
+        </Grid>
         <BigTitle text="SKILLS" top="80%" right="30%" />
       </Box>
     </ThemeProvider>
