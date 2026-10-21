@@ -93,6 +93,7 @@ export const Projects = [
     ],
     tags: ["Python", "LangChain", "LangGraph", "ChromaDB", "RAG", "Streamlit"],
     github: "https://github.com/okba-bouziane/UniPath",
+    live: "https://unipath-okba.streamlit.app",
     gitlab: "https://gitlab.com/okba-bouziane/unipath",
   },
 ];
