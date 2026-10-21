@@ -41,6 +41,7 @@ export const Projects = [
     ],
     tags: ["Python", "LiveKit", "LangGraph", "gRPC", "Protobuf", "pgvector", "FastAPI", "Pydantic"],
     github: "https://github.com/okba-bouziane/VoiceDesk",
+    live: "https://voicedesk-beta.vercel.app",
   },
   {
     id: "lexgraph",
