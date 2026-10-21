@@ -105,13 +105,12 @@ export const Experience = [
     place: "Algiers, Algeria",
     period: "Nov 2022 – Oct 2026",
     points: [
-      "Shipped 5 production apps in Angular, React and TypeScript on Node.js/NestJS, used daily by 300+ staff across client companies.",
-      "Unified login across 4 applications with Keycloak SSO (OAuth 2.0/OIDC, RBAC), cutting access-related support requests by ~30%.",
-      "Built a shared library of 30+ UI components, reducing duplicate UI code by ~30%.",
-      "Refactored legacy modules toward Clean Architecture, raising test coverage on core modules from near zero to ~50%.",
-      "Optimized PostgreSQL and MongoDB queries, cutting response times by ~50% on the heaviest endpoints.",
-      "Brought LLM features (summarization, smart search, form auto-fill) into business apps, saving ~25% of manual data entry.",
-      "Led code reviews and mentored 2 junior developers in Agile/Scrum sprints.",
+      "Operations teams were reviewing documents and filling forms by hand inside the business applications; integrated LLM APIs for document summarization, smart search and form auto-fill, built end to end with Angular, React and NestJS.",
+      "Each product had its own login and duplicated access rules; integrated Keycloak (OAuth2/OpenID Connect) with JWT-secured APIs and Role-Based Access Control for single sign-on across the applications, and built a custom admin console on the Keycloak Admin REST API for users, roles and clients.",
+      "Licensing was handled separately in each application; designed and built a SaaS-style licensing platform that every Smartest application integrates with, centralizing license issuing and validation in one service.",
+      "Business users depended on developers for every new report; built a Word-like report designer in which users bind data sources and datasets to tables and charts on a document canvas and generate reports themselves.",
+      "Several applications needed visual flow editing, and each would otherwise have rebuilt graph rendering from scratch; designed flow-dc, a reusable Angular flow-graph editor library integrated across the apps, with an extension API that lets developers register custom node and edge types without modifying the core.",
+      "Legacy modules were tightly coupled and risky to change; refactored them toward Clean Architecture with unit tests and a shared Angular component library, optimized PostgreSQL and MongoDB queries behind slow reporting screens, integrated MinIO (S3-compatible) for file storage, and shipped services with Docker through CI/CD.",
     ],
   },
   {
@@ -120,9 +119,8 @@ export const Experience = [
     place: "Tebessa, Algeria",
     period: "Mar 2020 – Jan 2022",
     points: [
-      "Delivered 6+ MVPs across mobile and web for start-ups in an incubator.",
-      "Built cross-platform React Native apps with auth, REST APIs, push notifications and offline-friendly screens.",
-      "Developed responsive React websites and landing pages for pitches, demo days and investor meetings.",
+      "Incubated founders had ideas but no product to pitch; turned them into mobile and web MVPs in short delivery cycles, advising on technical scope and feature priority so each team could demo a working first version.",
+      "Start-ups needed apps on both platforms on a small budget; built cross-platform React Native apps (iOS and Android) with authentication, REST APIs, push notifications and offline-friendly screens, plus React websites for demo days.",
     ],
   },
 ];
