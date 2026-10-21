@@ -102,8 +102,8 @@ export const Experience = [
   {
     company: "Smartest Algeria",
     role: "Full-Stack Developer",
-    place: "Remote, Algeria",
-    period: "Oct 2022 – Oct 2026",
+    place: "Algiers, Algeria",
+    period: "Nov 2022 – Oct 2026",
     points: [
       "Shipped 5 production apps in Angular, React and TypeScript on Node.js/NestJS, used daily by 300+ staff across client companies.",
       "Unified login across 4 applications with Keycloak SSO (OAuth 2.0/OIDC, RBAC), cutting access-related support requests by ~30%.",
@@ -118,7 +118,7 @@ export const Experience = [
     company: "Tebessa Innoest",
     role: "Mobile & Web Developer",
     place: "Tebessa, Algeria",
-    period: "Jan 2020 – Jan 2022",
+    period: "Mar 2020 – Jan 2022",
     points: [
       "Delivered 6+ MVPs across mobile and web for start-ups in an incubator.",
       "Built cross-platform React Native apps with auth, REST APIs, push notifications and offline-friendly screens.",
