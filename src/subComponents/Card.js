@@ -117,7 +117,7 @@ const item = {
 };
 
 function Card({ project }) {
-  const { name, tagline, description, highlights, tags, github, gitlab, live, image } = project;
+  const { name, tagline, description, highlights, tags, github, gitlab, live, demo, image } = project;
 
   return (
     <Box variants={item}>
@@ -139,6 +139,11 @@ function Card({ project }) {
         {live && (
           <Repo href={live} target="_blank" rel="noreferrer">
             Live demo
+          </Repo>
+        )}
+        {demo && (
+          <Repo href={demo} target="_blank" rel="noreferrer">
+            Demo video
           </Repo>
         )}
         <Repo href={github} target="_blank" rel="noreferrer">

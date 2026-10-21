@@ -25,6 +25,7 @@ export const Projects = [
     ],
     tags: ["TypeScript", "NestJS", "React", "LangGraph", "MCP", "Keycloak", "pgvector", "Redis", "BullMQ", "Docker"],
     github: "https://github.com/okba-bouziane/SecureAgentWorkspace",
+    demo: "https://github.com/okba-bouziane/SecureAgentWorkspace/blob/main/docs/demo.mp4",
   },
   {
     id: "voicedesk",
@@ -58,6 +59,7 @@ export const Projects = [
     ],
     tags: ["Python", "Neo4j", "LlamaIndex", "LangGraph", "Graph RAG", "FastAPI", "Evals"],
     github: "https://github.com/okba-bouziane/LexGraph",
+    demo: "https://github.com/okba-bouziane/LexGraph/blob/main/docs/demo.mp4",
   },
   {
     id: "securemcp",
