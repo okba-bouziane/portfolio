@@ -25,6 +25,16 @@ const Box = styled(motion.article)`
   }
 `;
 
+const Shot = styled.img`
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top left;
+  border-radius: 0 30px 0 30px;
+  border: 1px solid currentColor;
+  margin-bottom: 1.2rem;
+`;
+
 const Title = styled.h2`
   font-family: "Karla", sans-serif;
   font-size: calc(1.3rem + 0.6vw);
@@ -74,6 +84,7 @@ const Tag = styled.span`
 
 const Links = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 0.8rem;
   margin-top: 1.2rem;
 `;
@@ -106,10 +117,11 @@ const item = {
 };
 
 function Card({ project }) {
-  const { name, tagline, description, highlights, tags, github, gitlab } = project;
+  const { name, tagline, description, highlights, tags, github, gitlab, live, image } = project;
 
   return (
     <Box variants={item}>
+      {image && <Shot src={image} alt={`${name} screenshot`} loading="lazy" />}
       <Title>{name}</Title>
       <Tagline>{tagline}</Tagline>
       <Description>{description}</Description>
@@ -124,12 +136,19 @@ function Card({ project }) {
         ))}
       </Tags>
       <Links>
+        {live && (
+          <Repo href={live} target="_blank" rel="noreferrer">
+            Live demo
+          </Repo>
+        )}
         <Repo href={github} target="_blank" rel="noreferrer">
           <Github fill="currentColor" /> GitHub
         </Repo>
-        <Repo href={gitlab} target="_blank" rel="noreferrer">
-          <Gitlab fill="currentColor" /> GitLab
-        </Repo>
+        {gitlab && (
+          <Repo href={gitlab} target="_blank" rel="noreferrer">
+            <Gitlab fill="currentColor" /> GitLab
+          </Repo>
+        )}
       </Links>
     </Box>
   );

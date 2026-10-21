@@ -11,16 +11,65 @@ export const Profile = {
 
 export const Projects = [
   {
+    id: "secure-agent-workspace",
+    name: "Secure Agent Workspace",
+    tagline: "Full-stack agent app: React + NestJS + LangGraph",
+    image: "/projects/secure-agent-workspace.jpg",
+    description:
+      "A chat workspace where a LangGraph agent works on business data through my SecureMCP server, using the signed-in user's own Keycloak token, so the agent can never do more than the user is allowed to.",
+    highlights: [
+      "React + Vite UI with Keycloak PKCE login, streamed agent steps and an approval card for every write",
+      "Human-in-the-loop with LangGraph interrupt and a Postgres checkpointer (approvals survive restarts)",
+      "Hybrid RAG on Postgres: full-text + pgvector with rank fusion, citations, poisoned-document defence",
+      "BullMQ + Redis ingestion queue, rate limiting, tracing UI, evals in CI, Kubernetes manifests, load test",
+    ],
+    tags: ["TypeScript", "NestJS", "React", "LangGraph", "MCP", "Keycloak", "pgvector", "Redis", "BullMQ", "Docker"],
+    github: "https://github.com/okba-bouziane/SecureAgentWorkspace",
+  },
+  {
+    id: "voicedesk",
+    name: "VoiceDesk",
+    tagline: "LiveKit voice agent with a gRPC microservice",
+    image: "/projects/voicedesk.jpg",
+    description:
+      "A voice receptionist for a fictional clinic: speech-to-text, a LangGraph conversation that fills booking slots and answers from documents, then text-to-speech, with bookings handled by a separate gRPC service.",
+    highlights: [
+      "LiveKit Agents pipeline: VAD, turn detection, interruptions, Whisper STT, LLM, TTS",
+      "Booking microservice with a Protobuf contract, gRPC server and Postgres storage",
+      "Pydantic structured outputs with validation and retry; pgvector hybrid search over clinic docs",
+      "Per-turn latency metrics, versioned prompts and an eval gate in CI",
+    ],
+    tags: ["Python", "LiveKit", "LangGraph", "gRPC", "Protobuf", "pgvector", "FastAPI", "Pydantic"],
+    github: "https://github.com/okba-bouziane/VoiceDesk",
+  },
+  {
+    id: "lexgraph",
+    name: "LexGraph",
+    tagline: "Graph RAG on Neo4j with measured retrieval",
+    image: "/projects/lexgraph.jpg",
+    description:
+      "Graph RAG over a fictional contract corpus: documents become a Neo4j knowledge graph of parties, contracts, amendments and guarantees, so multi-hop questions can follow the links instead of guessing.",
+    highlights: [
+      "LlamaIndex + Neo4j property graph with a vector index and local bge-small embeddings",
+      "Vector, graph-expansion (Cypher paths) and hybrid retrievers compared on 31 labelled questions",
+      "Graph retrieval raises multi-hop full coverage from 0.47 to 0.84 at k=5",
+      "LangGraph query flow with citations, graph paths used and a groundedness self-check",
+    ],
+    tags: ["Python", "Neo4j", "LlamaIndex", "LangGraph", "Graph RAG", "FastAPI", "Evals"],
+    github: "https://github.com/okba-bouziane/LexGraph",
+  },
+  {
     id: "securemcp",
     name: "SecureMCP",
     tagline: "Keycloak-secured MCP server",
+    image: "/projects/securemcp.jpg",
     description:
-      "A Model Context Protocol server that lets AI agents query and update business data — with every tool call authenticated and authorized by a Keycloak-issued JWT.",
+      "A Model Context Protocol server that lets AI agents query and update business data, with every tool call authenticated and authorized by a Keycloak-issued JWT.",
     highlights: [
       "JWT verification (RS256 via JWKS, issuer, audience, expiry) on every request",
       "Role-based tool access: viewer vs. admin, with readable Forbidden errors",
       "Audit log of every allowed and denied agent action in SQLite",
-      "One-command Docker Compose setup, Vitest suite and GitHub Actions CI",
+      "Web demo console, one-command Docker Compose setup, Vitest suite and GitHub Actions CI",
     ],
     tags: ["TypeScript", "MCP SDK", "Keycloak", "OAuth 2.0", "SQLite", "Docker"],
     github: "https://github.com/okba-bouziane/SecureMCP",
@@ -30,8 +79,9 @@ export const Projects = [
     id: "unipath",
     name: "UniPath AI",
     tagline: "RAG admissions assistant",
+    image: "/projects/unipath.jpg",
     description:
-      "An AI agent that answers UK university and pathway-programme questions for Algerian students — grounded in a curated knowledge base, with every answer citing its source.",
+      "An AI agent that answers UK university and pathway-programme questions for Algerian students, grounded in a curated knowledge base, with every answer citing its source.",
     highlights: [
       "LangGraph agent with semantic search and fee-comparison tools",
       "Local sentence-transformer embeddings stored in ChromaDB",
@@ -89,7 +139,7 @@ export const Education = [
 export const SkillGroups = [
   {
     title: "AI & ML",
-    items: ["LLMs", "RAG", "AI Agents", "LangChain", "LangGraph", "MCP", "pgvector", "Prompt Engineering"],
+    items: ["LLMs", "RAG", "Graph RAG", "AI Agents", "LangChain", "LangGraph", "LlamaIndex", "MCP", "LiveKit Voice Agents", "pgvector", "Neo4j", "Evals", "Structured Outputs"],
   },
   {
     title: "Frontend",
@@ -97,7 +147,7 @@ export const SkillGroups = [
   },
   {
     title: "Backend & APIs",
-    items: ["Node.js", "NestJS", "Express", "FastAPI", "Python", "REST", "GraphQL", "Microservices"],
+    items: ["Node.js", "NestJS", "Express", "FastAPI", "Python", "REST", "GraphQL", "gRPC / Protobuf", "Microservices", "BullMQ / Redis"],
   },
   {
     title: "Auth & Security",
