@@ -1,7 +1,16 @@
 export const Profile = {
   name: "Okba Bouziane",
-  role: "Full-Stack Developer",
+  role: "Full-Stack & AI Engineer",
   location: "Algiers, Algeria",
+  years: 6,
+  summary:
+    "I build web products end to end with Angular, React and NestJS, and I bring LLMs into them safely: agents that act with the user's own permissions, RAG with citations, and evals that run in CI.",
+  about: [
+    "I'm a full-stack engineer based in Algiers with 6 years of building web and mobile products, from start-up MVPs at an incubator to B2B platforms at Smartest Algeria.",
+    "My day-to-day stack is Angular, React, TypeScript and NestJS, and I care about the parts that are easy to get wrong: Keycloak and OAuth2 authentication, role-based access, clean architecture, tests and fast queries.",
+    "With an MSc in Artificial Intelligence, I now focus on putting LLMs into real products: AI agents, RAG and Graph RAG, voice agents and secure MCP servers, each measured with evals instead of guesses.",
+  ],
+  languages: ["Arabic (native)", "English (full professional)", "French (limited working)"],
   email: "okba.bouziane@outlook.com",
   resume: "/okba-resume.pdf",
   github: "https://github.com/okba-bouziane",
@@ -12,9 +21,11 @@ export const Profile = {
 export const Projects = [
   {
     id: "secure-agent-workspace",
+    featured: true,
     name: "Secure Agent Workspace",
     tagline: "Full-stack agent app: React + NestJS + LangGraph",
     image: "/projects/secure-agent-workspace.jpg",
+    imageSize: [1400, 885],
     description:
       "A chat workspace where a LangGraph agent works on business data through my SecureMCP server, using the signed-in user's own Keycloak token, so the agent can never do more than the user is allowed to.",
     highlights: [
@@ -23,15 +34,21 @@ export const Projects = [
       "Hybrid RAG on Postgres: full-text + pgvector with rank fusion, citations, poisoned-document defence",
       "BullMQ + Redis ingestion queue, rate limiting, tracing UI, evals in CI, Kubernetes manifests, load test",
     ],
+    metrics: ["82 automated tests", "recall@3 1.00 on 18 questions", "10/10 injection attacks detected"],
     tags: ["TypeScript", "NestJS", "React", "LangGraph", "MCP", "Keycloak", "pgvector", "Redis", "BullMQ", "Docker"],
     github: "https://github.com/okba-bouziane/SecureAgentWorkspace",
     demo: "https://github.com/okba-bouziane/SecureAgentWorkspace/blob/main/docs/demo.mp4",
+    video: "/videos/secure-agent-workspace.mp4",
+    poster: "/videos/secure-agent-workspace-poster.jpg",
+    videoLength: "1:14",
   },
   {
     id: "voicedesk",
+    featured: true,
     name: "VoiceDesk",
     tagline: "LiveKit voice agent with a gRPC microservice",
     image: "/projects/voicedesk.jpg",
+    imageSize: [1260, 1400],
     description:
       "A voice receptionist for a fictional clinic: speech-to-text, a LangGraph conversation that fills booking slots and answers from documents, then text-to-speech, with bookings handled by a separate gRPC service.",
     highlights: [
@@ -40,15 +57,18 @@ export const Projects = [
       "Pydantic structured outputs with validation and retry; pgvector hybrid search over clinic docs",
       "Per-turn latency metrics, versioned prompts and an eval gate in CI",
     ],
+    metrics: ["74 pytest tests", "recall@3 1.00 with hybrid search", "1.59 s speech-to-reply on a live call"],
     tags: ["Python", "LiveKit", "LangGraph", "gRPC", "Protobuf", "pgvector", "FastAPI", "Pydantic"],
     github: "https://github.com/okba-bouziane/VoiceDesk",
     live: "https://voicedesk-beta.vercel.app",
   },
   {
     id: "lexgraph",
+    featured: true,
     name: "LexGraph",
     tagline: "Graph RAG on Neo4j with measured retrieval",
     image: "/projects/lexgraph.jpg",
+    imageSize: [1400, 875],
     description:
       "Graph RAG over a fictional contract corpus: documents become a Neo4j knowledge graph of parties, contracts, amendments and guarantees, so multi-hop questions can follow the links instead of guessing.",
     highlights: [
@@ -57,15 +77,20 @@ export const Projects = [
       "Graph retrieval raises multi-hop full coverage from 0.47 to 0.84 at k=5",
       "LangGraph query flow with citations, graph paths used and a groundedness self-check",
     ],
+    metrics: ["multi-hop recall@5 0.74 → 0.92", "multi-hop full coverage 0.47 → 0.84", "41 pytest tests"],
     tags: ["Python", "Neo4j", "LlamaIndex", "LangGraph", "Graph RAG", "FastAPI", "Evals"],
     github: "https://github.com/okba-bouziane/LexGraph",
     demo: "https://github.com/okba-bouziane/LexGraph/blob/main/docs/demo.mp4",
+    video: "/videos/lexgraph.mp4",
+    poster: "/videos/lexgraph-poster.jpg",
+    videoLength: "0:54",
   },
   {
     id: "securemcp",
     name: "SecureMCP",
     tagline: "Keycloak-secured MCP server",
     image: "/projects/securemcp.jpg",
+    imageSize: [1065, 1400],
     description:
       "A Model Context Protocol server that lets AI agents query and update business data, with every tool call authenticated and authorized by a Keycloak-issued JWT.",
     highlights: [
@@ -74,6 +99,7 @@ export const Projects = [
       "Audit log of every allowed and denied agent action in SQLite",
       "Web demo console, one-command Docker Compose setup, Vitest suite and GitHub Actions CI",
     ],
+    metrics: ["every tool call needs a valid JWT", "every allowed or denied call audited"],
     tags: ["TypeScript", "MCP SDK", "Keycloak", "OAuth 2.0", "SQLite", "Docker"],
     github: "https://github.com/okba-bouziane/SecureMCP",
     gitlab: "https://gitlab.com/okba-bouziane/securemcp",
@@ -83,6 +109,7 @@ export const Projects = [
     name: "UniPath AI",
     tagline: "RAG admissions assistant",
     image: "/projects/unipath.jpg",
+    imageSize: [1400, 900],
     description:
       "An AI agent that answers UK university and pathway-programme questions for Algerian students, grounded in a curated knowledge base, with every answer citing its source.",
     highlights: [
@@ -91,6 +118,7 @@ export const Projects = [
       "Refuses to guess: answers only from retrieved documents",
       "Evaluation script scoring 10/10 answer accuracy, plus a pytest suite",
     ],
+    metrics: ["10/10 on the answer eval", "a cited source on every answer"],
     tags: ["Python", "LangChain", "LangGraph", "ChromaDB", "RAG", "Streamlit"],
     github: "https://github.com/okba-bouziane/UniPath",
     live: "https://unipath-okba.streamlit.app",
