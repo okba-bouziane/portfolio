@@ -6,18 +6,18 @@
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="any" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.svg" type="image/svg+xml" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <title>Okba Bouziane — Full-Stack Developer</title>
+  <meta name="theme-color" content="#09090b" />
+  <title>Okba Bouziane — Full-Stack & AI Engineer</title>
   <meta name="description"
-    content="Okba Bouziane — full-stack developer (Angular, React, NestJS) building secure, AI-powered apps: RAG assistants, AI agents and Keycloak-secured MCP servers." />
+    content="Okba Bouziane, full-stack and AI engineer in Algiers (Angular, React, NestJS). Builds secure AI agents, RAG and Graph RAG, voice agents and Keycloak-secured MCP servers." />
   <meta name="author" content="Okba Bouziane" />
   <link rel="canonical" href="https://devokba.vercel.app/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://devokba.vercel.app/" />
-  <meta property="og:title" content="Okba Bouziane — Full-Stack Developer" />
+  <meta property="og:title" content="Okba Bouziane — Full-Stack & AI Engineer" />
   <meta property="og:description"
-    content="Full-stack developer building secure, AI-powered web apps. Projects: Secure Agent Workspace, VoiceDesk, LexGraph, SecureMCP and UniPath AI." />
+    content="Full-stack and AI engineer building secure, AI-powered web apps. Projects: Secure Agent Workspace, VoiceDesk, LexGraph, SecureMCP and UniPath AI." />
   <meta property="og:image" content="https://devokba.vercel.app/okba-og.jpg" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://devokba.vercel.app/okba-og.jpg" />
@@ -28,12 +28,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Pacifico&family=Source+Sans+Pro:wght@400;600;700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
     rel="stylesheet">
+  <script>
+    try {
+      var m = localStorage.getItem('color-mode');
+      document.documentElement.dataset.theme = m === 'light' ? 'light' : 'dark';
+    } catch (e) {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  </script>
 </head>
 
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <noscript>Okba Bouziane, Full-Stack &amp; AI Engineer. Enable JavaScript to see the portfolio, or <a href="/okba-resume.pdf">open the resume (PDF)</a>.</noscript>
   <div id="root"></div>
 </body>
 
