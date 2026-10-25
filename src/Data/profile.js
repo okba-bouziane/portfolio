@@ -135,9 +135,9 @@ export const Experience = [
     points: [
       "Operations teams were reviewing documents and filling forms by hand inside the business applications; integrated LLM APIs for document summarization, smart search and form auto-fill, built end to end with Angular, React and NestJS.",
       "Each product had its own login and duplicated access rules; integrated Keycloak (OAuth2/OpenID Connect) with JWT-secured APIs and Role-Based Access Control for single sign-on across the applications, and built a custom admin console on the Keycloak Admin REST API for users, roles and clients.",
-      "Licensing was handled separately in each application; designed and built a SaaS-style licensing platform that every Smartest application integrates with, centralizing license issuing and validation in one service.",
+      "Licensing was handled separately in each application; designed and built a SaaS-style licensing platform that all the applications integrate with, centralizing license issuing and validation in one service.",
       "Business users depended on developers for every new report; built a Word-like report designer in which users bind data sources and datasets to tables and charts on a document canvas and generate reports themselves.",
-      "Several applications needed visual flow editing, and each would otherwise have rebuilt graph rendering from scratch; designed flow-dcl, a reusable Angular flow-graph editor library integrated across the apps, with an extension API that lets developers register custom node and edge types without modifying the core.",
+      "Several applications needed visual flow editing, and each would otherwise have rebuilt graph rendering from scratch; designed a reusable in-house Angular flow-graph editor library integrated across the apps, with an extension API that lets developers register custom node and edge types without modifying the core.",
       "Legacy modules were tightly coupled and risky to change; refactored them toward Clean Architecture with unit tests and a shared Angular component library, optimized PostgreSQL and MongoDB queries behind slow reporting screens, integrated MinIO (S3-compatible) for file storage, and shipped services with Docker through CI/CD.",
     ],
   },
