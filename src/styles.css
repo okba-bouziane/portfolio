@@ -547,8 +547,8 @@ img {
 .socials {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 20px;
-  margin-top: 28px;
+  gap: 0 20px;
+  margin-top: 18px;
   font-family: var(--mono);
   font-size: 15px;
 }
@@ -557,6 +557,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-height: 44px;
   color: var(--muted);
   text-decoration: none;
   transition: color 0.2s ease;
@@ -1172,7 +1173,7 @@ img {
 
 .footer {
   border-top: 1px solid var(--line);
-  padding: 28px 0;
+  padding: 18px 0;
   font-family: var(--mono);
   font-size: 14px;
   color: var(--muted);
@@ -1186,6 +1187,9 @@ img {
 }
 
 .footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   text-decoration: none;
 }
 
@@ -1254,6 +1258,10 @@ img {
     display: grid;
   }
 
+  .section {
+    padding: 56px 0;
+  }
+
   .terminal-body {
     height: 260px;
     font-size: 13.5px;
@@ -1265,12 +1273,18 @@ img {
   }
 
   .about-card {
-    margin: -32px 0 0 28px;
+    margin: -32px 0 0 12px;
   }
 
   .code-body {
     font-size: 12.5px;
     padding: 14px;
+  }
+
+  /* Wrap long JSON values instead of scrolling sideways on phones. */
+  .about-card .code-body {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
 
   .skills-window .code-body {
